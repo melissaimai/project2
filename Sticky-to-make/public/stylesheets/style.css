@@ -203,14 +203,18 @@ h3,h4,h5 {
 }
 
 #table-body .row .col {
-  padding: .75rem;
+  /* padding: .99rem; */
+  padding: 13px
 }
 
 #table-body .col {
   border: 1px solid transparent;
 }
 
-#table-body {}
+#table-body {
+  padding: 13px;
+  text-align: justify;
+}
 
 #table-body .row {
   margin-bottom: 0;
