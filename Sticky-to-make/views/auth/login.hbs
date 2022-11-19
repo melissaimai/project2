@@ -1,0 +1,22 @@
+<login className="hbs"><div id="form" class="form-group">
+  <h2>Log In</h2>
+  <form action="/login" method="POST">
+
+    <label> Username
+      <input type="text" name="username" placeholder="Your username" />
+    </label>
+
+    <label> Password
+      <input type="password" name="password" placeholder="Your password" />
+    </label>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+    <br />
+    {{!-- <a href="/" class="btn btn-link">Home </a> --}}
+
+
+    {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div></login>

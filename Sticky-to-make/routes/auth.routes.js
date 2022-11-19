@@ -12,7 +12,7 @@ const User = require("../models/User.model");
 
 // GET /auth/signup FORM
 router.get("/auth/signup", (req, res) => {
-  res.render("auth/signup.hbs");
+  res.render("auth/signup");
 });
 
 // POST /auth/signup CREATE USER
@@ -32,30 +32,57 @@ router.post("/auth/signup", async (req, res) => {
     });
     return;
   }
-  const userFromDB = await User.findOne({ username })
+  const userFromDB = await User.findOne({ username });
 
   if (userFromDB !== null) {
-    res.render("signup", { message: "This Username already exists!" });
+    res.render("auth/signup", {
+      errorMessage: "This Username already exists!",
+    });
     return;
   } else {
     const salt = bcrypt.genSaltSync();
     const hashedPassword = bcrypt.hashSync(password, salt);
 
-    const userCreated = await User.create({ username, password: hashedPassword })
+    const userCreated = await User.create({
+      username,
+      password: hashedPassword,
+    });
 
-    console.log(userCreated)
-
-    res.redirect("/auth/login");
-
+    res.redirect("/login");
   }
 });
 
+//LOGIN GET /auth/LOGIN FORM
+router.get("/login", (req, res) => res.render("auth/login"));
+
+//LOGIN POST /auth/LOGIN GET EXISTING USER FROM DB
+router.post("/login", (req, res, next) => {
+  const { username, password } = req.body;
+
+  if (username === "" || password === "") {
+    res.status(400).render("auth/login", {
+      errorMessage:
+        "All fields are mandatory. Please provide your username and password.",
+    });
+  }
+
+  User.findOne({ username }).then((userFromDB) => {
+    if (!userFromDB) {
+      res.render("auth/login", { errorMessage: " Oops!!Wrong credentials" });
+    }
+    if (bcrypt.compareSync(password, userFromDB.password)) {
+      req.session.User = userFromDB;
+      res.redirect("/");
+    } else
+      res.render("auth/login", { errorMessage: " Oops!!Wrong credentials" });
+  });
+});
 
 // GET /auth/logout
 router.get("/auth/logout", (req, res, next) => {
   // Logout user
-  req.session.destroy()
-  res.redirect("/")
-})
+  req.session.destroy();
+  res.redirect("/");
+});
 
 module.exports = router;
