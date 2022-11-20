@@ -50,7 +50,7 @@ a
   margin:0 25px;
 }
 .navbar .nav-links ul li.active a {
-  color: rgb(57, 168, 228);
+  color:  #54BAB9 ;
   font-weight:400;
 }
 .navbar a {
@@ -58,7 +58,7 @@ a
 }
 
 .main__button {
-    box-shadow: 0 5px 15px rgb(57, 168, 228);
+    box-shadow: 0 5px 15px #54BAB9 ;
   background-color: #39a8e4;
   padding: 10px;
   padding-left: 3em;

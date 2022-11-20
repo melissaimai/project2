@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
 }
 
@@ -14,11 +16,11 @@ h3,h4,h5 {
 }
 
 .calendar-header {
-  background-color: rgba(18, 15, 25, 0.25);
+  background-color: rgb(84, 186, 185, 0.45);
   height: 100%;
   padding: 20px;
   color: #fff;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 300;
   position: relative;
 }
@@ -28,7 +30,7 @@ h3,h4,h5 {
 }
 
 .header-background {
-  background-image: url("https://raw.githubusercontent.com/JustMonk/codepen-resource-project/master/img/compressed-header.jpg");
+  background-image: url("https://img.freepik.com/free-photo/conceptual-business-with-wooden-blocks-column-with-icons_176474-10480.jpg?w=1380&t=st=1668966802~exp=1668967402~hmac=29f6d92f481526a0950a9787e7dc4591c05e9777031b09ab1cdc6e0797d080e4");
   height: 200px;
   background-position: center right;
   background-size: cover;
@@ -54,10 +56,10 @@ h3,h4,h5 {
 
 .calendar-footer {
   height: 200px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 300;
   text-align: center;
-  background-color: #4b6289 !important;
+  background-color:rgb(158, 210, 198) !important;
   position: relative;
   overflow: hidden;
 }
@@ -67,7 +69,7 @@ h3,h4,h5 {
   top: 100%;
   width: 100%;
   height: 100%;
-  background-color: #4b5889 !important;
+  background-color:#E9DAC1 !important;
   transition: top 0.5s cubic-bezier(1, 0, 0, 1);
   padding: 0 5px 0 5px;
 }
@@ -110,10 +112,10 @@ h3,h4,h5 {
 
 .sidebar-wrapper {
   color: #fff;
-  background-color: #5a649c !important;
+  background-color: #54BAB9 !important;
   padding-top: 0;
   padding-bottom: 20px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 300;
   padding-left: 0;
   padding-right: 0;
@@ -178,7 +180,7 @@ h3,h4,h5 {
 .day-mark {
   width: 7px;
   height: 7px;
-  background-color: #b39ddb;
+  background-color: rgb(84, 186, 185);
   border-radius: 100px;
   position: absolute;
   left: 47%;
@@ -203,17 +205,11 @@ h3,h4,h5 {
 }
 
 #table-body .row .col {
-  /* padding: .99rem; */
-  padding: 13px
+  padding: .75rem;
 }
 
 #table-body .col {
   border: 1px solid transparent;
-}
-
-#table-body {
-  padding: 13px;
-  text-align: justify;
 }
 
 #table-body .row {
@@ -234,7 +230,7 @@ h3,h4,h5 {
   cursor: pointer;
   left: 0%;
   top: 35%;
-  color: grey !important;
+  color: #F7ECDE!important;
 }
 
 .prev-button i {
@@ -246,7 +242,7 @@ h3,h4,h5 {
   cursor: pointer;
   right: 0%;
   top: 35%;
-  color: grey !important;
+  color:#F7ECDE !important;
 }
 
 .next-button i {
@@ -278,7 +274,7 @@ h3,h4,h5 {
   position: fixed;
   z-index: 99;
   width: 100%;
-  background-color: #5a649c !important;
+  background-color: #E9DAC1 !important;
 }
 
 .mobile-header a i {
@@ -296,7 +292,7 @@ h3,h4,h5 {
 
 .mobile-header h4 {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 300;
 }
 
@@ -314,7 +310,7 @@ h3,h4,h5 {
      background-color: #EEEEEE !important;
   }
   .sidebar-title {
-     background-color: #5A649C !important;
+     background-color: #E9DAC1!important;
   }
   .empty-message {
      color: black;
