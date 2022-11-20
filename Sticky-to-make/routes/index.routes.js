@@ -7,7 +7,7 @@ const router = express.Router();
 // });
 
 router.get("/", (req, res, next) => {
-  res.render("initial");
+  res.render("index");
 });
 
 module.exports = router;
