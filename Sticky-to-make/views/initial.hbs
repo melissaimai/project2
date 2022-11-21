@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 
@@ -34,21 +35,10 @@
       <div class="sidebar-title">
         <h4>Events</h4>
         <h5 id="eventDayName">Date</h5>
-        <a class="btn btn-primary" href="/notes/create" role="button">Create a
-          note</a>
+        {{!-- <a class="btn btn-primary" href="/notes/create" role="button">Create a
+          note</a> --}}
       </div>
       <div class="sidebar-events" id="sidebarEvents">
-        <div class="empty-message">Sorry, no events to selected date</div>
-      </div>
-      <div class="sidebar-events" id="sidebarEvents">
-        {{#each notes}}
-        <div>
-          <h4>Title: {{title}}</h4>
-          <h4>Details: {{description}}</h4>
-          <a href="/notes/{{_id}}/edit">Edit this note </a>
-        </div>
-        {{/each}}
-        <div class="empty-message">Sorry, no events to selected date</div>
       </div>
     </div>
 
