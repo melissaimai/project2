@@ -84,33 +84,33 @@ a {
 .title-text1 {
   font-size: 5rem;
   color: rgb(70, 72, 74);
-  text-align: center;
+  /* text-align: center;
   position: absolute;
   top: 30%;
   left: 30%;
-  right: 30%;
+  right: 30%; */
   font-family: "Sacramento", cursive;
-  padding-right: 10px;
+  /* padding-right: 10px; */
 }
 .title-text2 {
   font-size: 3rem;
   color: rgb(70, 72, 74);
-  text-align: center;
+  /* text-align: center;
   position: absolute;
   top: 50%;
   left: 30%;
-  right: 30%;
+  right: 30%; */
   font-family: "Sacramento", cursive;
-  padding-right: 10px;
+  /* padding-right: 10px; */
 }
 .title-text3 {
   font-size: 3rem;
   color: rgb(70, 72, 74);
-  text-align: center;
+  /* text-align: center;
   position: absolute;
   top: 60%;
   left: 30%;
-  right: 30%;
+  right: 30%; */
   font-family: "Sacramento", cursive;
 }
 .title-text4 {
@@ -140,8 +140,8 @@ a {
   text-align: center;
 }
 /* Above for Login */
-/* Below for Edit Page */
 
+/* Below for Edit Page */
 .centre-button1 {
   margin: 1rem;
   position: absolute;
@@ -154,6 +154,45 @@ a {
   bottom: 20%;
   left: 45%;
 }
-
-
 /* Above for Edit Page */
+
+/* Below for detail-note view */
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.centre-button-detail{
+  padding-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 250px;
+}
+.textarea1{
+  background-color: rgb(145, 138, 138);
+  border-radius: 10px;
+  pointer-events: none;
+}
+.textarea2{
+  background-color: rgb(145, 138, 138);
+  border-radius: 10px;
+  pointer-events: none;
+}
+/* Above for detail note view */
+
+/* Below for edit note view */
+.textarea3{
+  background-color: white;
+  border-radius: 10px;
+  
+}
+.textarea4{
+  background-color: white;
+  border-radius: 10px;
+  
+}
+/* Above for edit note view */
