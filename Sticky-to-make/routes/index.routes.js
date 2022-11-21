@@ -20,7 +20,7 @@ router.get("/dashboard", (req, res, next) => {
 router.get("/notes/create", (req, res, next) => {
   res.render("notes/new-note");
 });
-
+// Get single note detail
 router.get("/notes/:id/detail", (req, res) => {
   const { id } = req.params;
   Notes.findById(id)
@@ -34,14 +34,32 @@ router.get("/notes/:id/detail", (req, res) => {
     });
 });
 
+// View & Update single Note
+router.get("/notes/:id/edit", (req, res) => {
+  const { id } = req.params;
+  Notes.findById(id)
+    .then((theNote) => {
+      res.render("notes/edit-note", { note: theNote });
+    })
+    .catch((error) => {
+      console.log("Error while retrieving note details: ", error);
+    });
+});
+router.post("/notes/:id/edit", (req, res, next) => {
+  const { id} = req.params;
+  const { title, description} = req.body;
 
-
-
-
-
-
-
-// below
+  Notes.findByIdAndUpdate(
+    id,
+    { title, description},
+    { new: true }
+  )
+    .then((updatedNote) => {
+      updatedNote.save();
+    })
+    .then(() => res.redirect("/dashboard"))
+    .catch((error) => next(error));
+});
 
 
 
