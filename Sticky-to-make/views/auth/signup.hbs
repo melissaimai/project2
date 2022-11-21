@@ -1,22 +1,37 @@
+<nav class="navbar">
+  <a href="#" class="logo"><strong>Plan</strong>Away</a>
+  <div class="nav-links">
+    <ul class="nav-menu">
+      <li><a href="">Features</a></li>
+      <li class="active"><a href="">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+<header class="header">
+  <div>
+
 <div id="form" class="form-group">
-  <h2>Sign Up</h2>
+  <h2 class="title-text1">Sign Up</h2>
   <form action="/auth/signup" method="POST">
 
-    <label> Username
-      <input type="text" name="username" placeholder="Your username" />
+    <label class="title-text2"> Username
+      <input  class="inputField2" type="text" name="username" placeholder="Your username" />
     </label>
 
-    <label> Password
-      <input type="password" name="password" placeholder="Your password" />
+    <label class="title-text3"> Password
+      <input class="inputField1" type="password" name="password" placeholder="Your password" />
     </label>
-
-    <button type="submit" class="btn btn-primary">Sign Up</button>
+   <span class="centre-button1">
+    <button  class="main__button" type="submit" class="btn btn-primary">Sign Up</button>
     <br />
-    <a href="/" class="btn btn-link">Home </a>
+    </span>
+    {{!-- <a href="/" class="btn btn-link">Home </a> --}}
 
 
     {{#if errorMessage}}
-    <p class="error">{{errorMessage}}</p>
+    <p  class="title-text4" class="error">{{errorMessage}}</p>
     {{/if}}
   </form>
 </div>
+</div>
+</header>
