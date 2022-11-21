@@ -18,9 +18,30 @@ router.get("/dashboard", (req, res, next) => {
 router.get("/notes/create", (req, res, next) => {
   res.render("notes/new-note");
 });
-router.get("/notes/detail", (req, res, next) => {
-  res.render("notes/detail-note");
+
+router.get("/notes/:id/detail", (req, res) => {
+  const { id } = req.params;
+  Notes.findById(id)
+    .then((notefromDB) => {
+      res.render("notes/detail-note", {
+        note: notefromDB,
+      });
+    })
+    .catch((error) => {
+      console.log("Error while retrieving note details: ", error);
+    });
 });
+
+
+
+
+
+
+
+
+// below
+
+
 
 router.post('/initial', (req, res, next) => {
   const { title, description } = req.body
