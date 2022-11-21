@@ -18,6 +18,9 @@ router.get("/dashboard", (req, res, next) => {
 router.get("/notes/create", (req, res, next) => {
   res.render("notes/new-note");
 });
+router.get("/notes/detail", (req, res, next) => {
+  res.render("notes/detail-note");
+});
 
 router.post('/initial', (req, res, next) => {
   const { title, description } = req.body
