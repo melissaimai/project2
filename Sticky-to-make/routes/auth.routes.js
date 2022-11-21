@@ -64,6 +64,7 @@ router.post("/login", (req, res, next) => {
       errorMessage:
         "All fields are mandatory. Please provide your username and password.",
     });
+    return;
   }
 
   User.findOne({ username }).then((userFromDB) => {
@@ -72,7 +73,7 @@ router.post("/login", (req, res, next) => {
     }
     if (bcrypt.compareSync(password, userFromDB.password)) {
       req.session.User = userFromDB;
-      res.redirect("/");
+      res.redirect("/dashboard");
     } else
       res.render("auth/login", { errorMessage: " Oops!!Wrong credentials" });
   });
