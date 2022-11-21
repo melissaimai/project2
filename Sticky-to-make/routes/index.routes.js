@@ -1,5 +1,6 @@
-const express = require('express');
-const router = express.Router();
+// const express = require('express');
+const router = require("express").Router();
+const Notes = require('../models/Notes.model')
 
 /* GET home page */
 // router.get("/", (req, res, next) => {
@@ -16,6 +17,33 @@ router.get("/dashboard", (req, res, next) => {
 
 router.get("/notes/create", (req, res, next) => {
   res.render("notes/new-note");
+});
+
+router.post('/initial', (req, res, next) => {
+  const { title, description } = req.body
+  // const userId = req.session.user._id
+  Notes.create({ title, description })
+    .then(createdNote => {
+      res.redirect('/initial')
+    })
+    .catch(err => {
+      next(err)
+    })
+});
+
+//list all notes
+router.get('/initial', (req, res, next) => {
+  // const userId = req.session.user._id
+  const query = {}
+  Notes.find(query)
+    .populate("owner")
+    .then(notes => {
+      console.log("notes: ", notes)
+      res.render('initial', { notes })
+    })
+    .catch(err => {
+      next(err)
+    })
 });
 
 

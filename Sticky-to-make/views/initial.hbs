@@ -33,9 +33,20 @@
       <div class="sidebar-title">
         <h4>Events</h4>
         <h5 id="eventDayName">Date</h5>
-        <a class="btn btn-primary" href="/notes/create" role="button">Create a note</a>
+        {{!-- <a class="btn btn-primary" href="/notes/create" role="button">Create a note</a> --}}
+        {{!-- <div class="emptyForm" id="emptyForm">
+          <a class="addEvent" href="/notes/create" id="changeFormButton">Create</a>
+        </div> --}}
       </div>
+
       <div class="sidebar-events" id="sidebarEvents">
+        {{#each notes}}
+        <div>
+          <h4>Title: {{title}}</h4>
+          <h4>Details: {{description}}</h4>
+          <a href="/notes/{{_id}}/edit">Edit this note </a>
+        </div>
+        {{/each}}
         <div class="empty-message">Sorry, no events to selected date</div>
       </div>
 
@@ -94,26 +105,28 @@
               <h4 id="emptyFormTitle">No events now</h4>
               <a class="addEvent" id="changeFormButton">Add new</a>
             </div>
-            <div class="addForm" id="addForm">
-              <h4>Add new event</h4>
+            <form action="/initial" method="post">
+              <div class="addForm" id="addForm">
+                <h4>Add new event</h4>
+                <form action="/initial" method="post">
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <input name="title" id="eventTitleInput" type="text" class="validate">
+                      <label for="eventTitleInput">Title</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <input name="description" id="eventDescInput" type="text" class="validate">
+                      <label for="eventDescInput">Description</label>
+                    </div>
+                  </div>
 
-              <div class="row">
-                <div class="input-field col s6">
-                  <input id="eventTitleInput" type="text" class="validate">
-                  <label for="eventTitleInput">Title</label>
-                </div>
-                <div class="input-field col s6">
-                  <input id="eventDescInput" type="text" class="validate">
-                  <label for="eventDescInput">Description</label>
-                </div>
+                  <div class="addEventButtons">
+                    <a class="waves-effect waves-light btn blue lighten-2" id="addEventButton"><input
+                        type="submit">Add</a>
+                    <a class="waves-effect waves-light btn grey lighten-2" id="cancelAdd">Cancel</a>
+                  </div>
+                </form>
               </div>
-
-              <div class="addEventButtons">
-                <a class="waves-effect waves-light btn blue lighten-2" id="addEventButton">Add</a>
-                <a class="waves-effect waves-light btn grey lighten-2" id="cancelAdd">Cancel</a>
-              </div>
-
-            </div>
           </div>
 
         </div>
