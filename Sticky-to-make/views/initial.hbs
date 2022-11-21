@@ -40,7 +40,16 @@
       <div class="sidebar-events" id="sidebarEvents">
         <div class="empty-message">Sorry, no events to selected date</div>
       </div>
-
+      <div class="sidebar-events" id="sidebarEvents">
+        {{#each notes}}
+        <div>
+          <h4>Title: {{title}}</h4>
+          <h4>Details: {{description}}</h4>
+          <a href="/notes/{{_id}}/edit">Edit this note </a>
+        </div>
+        {{/each}}
+        <div class="empty-message">Sorry, no events to selected date</div>
+      </div>
     </div>
 
     <div class="content-wrapper grey lighten-3">
