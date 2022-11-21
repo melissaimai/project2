@@ -189,6 +189,9 @@ function showEvents() {
       markWrapper.className = "eventCard-mark-wrapper";
       let mark = document.createElement("div");
       mark.classList = "eventCard-mark";
+      mark.innerHTML=`<a href="/notes/detail">
+      <img class="edit-img" src="/images/edit.png">;
+    </a>`;
       markWrapper.appendChild(mark);
       eventContainer.appendChild(markWrapper);
 

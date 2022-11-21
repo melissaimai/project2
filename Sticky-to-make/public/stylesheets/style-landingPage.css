@@ -140,3 +140,20 @@ a {
   text-align: center;
 }
 /* Above for Login */
+/* Below for Edit Page */
+
+.centre-button1 {
+  margin: 1rem;
+  position: absolute;
+  bottom: 20%;
+  left: 45%;
+}
+.centre-button2 {
+  margin: 1rem;
+  position: absolute;
+  bottom: 20%;
+  left: 45%;
+}
+
+
+/* Above for Edit Page */
