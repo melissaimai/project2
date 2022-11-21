@@ -7,7 +7,8 @@ const notesSchema = new Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'User'
-    }
+    },
+    date: Date
   });
 
 const Notes = model("Notes", notesSchema);

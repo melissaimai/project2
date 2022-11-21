@@ -2,6 +2,8 @@
 const router = require("express").Router();
 const Notes = require('../models/Notes.model')
 
+const moment = require('moment')
+
 /* GET home page */
 // router.get("/", (req, res, next) => {
 //   res.render("index");
@@ -24,7 +26,7 @@ router.get("/notes/:id/detail", (req, res) => {
   Notes.findById(id)
     .then((notefromDB) => {
       res.render("notes/detail-note", {
-        note: notefromDB,
+        note: notefromDB
       });
     })
     .catch((error) => {
@@ -62,11 +64,11 @@ router.post("/notes/:id/edit", (req, res, next) => {
 
 
 router.post('/initial', (req, res, next) => {
-  const { title, description } = req.body
+  const { title, description, date } = req.body
   // const userId = req.session.user._id
-  Notes.create({ title, description })
-    .then(createdNote => {
-      res.redirect('/initial')
+  Notes.create({ title, description, date: new Date(moment(date).format("YYYY-MM-DD")) })
+    .then(() => {
+      res.sendStatus(201)
     })
     .catch(err => {
       next(err)
@@ -75,18 +77,29 @@ router.post('/initial', (req, res, next) => {
 
 //list all notes
 router.get('/initial', (req, res, next) => {
-  // const userId = req.session.user._id
   const query = {}
+
   Notes.find(query)
     .populate("owner")
     .then(notes => {
-      console.log("notes: ", notes)
       res.render('initial', { notes })
     })
     .catch(err => {
       next(err)
     })
 });
+
+router.get('/notes/:date', (req, res) => {
+  const { date } = req.params
+  Notes.find({ date: new Date(moment(date).format("YYYY-MM-DD")) })
+    .then(notes => {
+      return res.json({ data: notes })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+});
+
 
 
 module.exports = router;

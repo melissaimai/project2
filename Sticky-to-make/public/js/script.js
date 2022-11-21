@@ -1,6 +1,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
 // document.addEventListener("DOMContentLoaded", () => {
 //   console.log("name-of-project JS imported successfully!");
+
 // });
 var calendar = document.getElementById("calendar-table");
 var gridTable = document.getElementById("table-body");
@@ -64,11 +65,11 @@ function createCalendar(date, side) {
         if (
           (selectedDayBlock == null && i == currentDate.getDate()) ||
           selectedDate.toDateString() ==
-            new Date(
-              currentDate.getFullYear(),
-              currentDate.getMonth(),
-              i
-            ).toDateString()
+          new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            i
+          ).toDateString()
         ) {
           selectedDate = new Date(
             currentDate.getFullYear(),
@@ -94,11 +95,11 @@ function createCalendar(date, side) {
         //show marks
         if (
           globalEventObj[
-            new Date(
-              currentDate.getFullYear(),
-              currentDate.getMonth(),
-              i
-            ).toDateString()
+          new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            i
+          ).toDateString()
           ]
         ) {
           let eventMark = document.createElement("div");
@@ -161,15 +162,17 @@ function addEvent(title, desc) {
   globalEventObj[selectedDate.toDateString()][title] = desc;
 }
 
-function showEvents() {
+async function showEvents() {
   let sidebarEvents = document.getElementById("sidebarEvents");
-  let objWithDate = globalEventObj[selectedDate.toDateString()];
+  const response = await axios.get(`http://localhost:3000/notes/` + selectedDate.toDateString())
+  const notesArray = response.data.data
 
   sidebarEvents.innerHTML = "";
 
-  if (objWithDate) {
+  if (notesArray[0]) {
     let eventsCount = 0;
-    for (key in globalEventObj[selectedDate.toDateString()]) {
+
+    notesArray.forEach(note => {
       let eventContainer = document.createElement("div");
       eventContainer.className = "eventCard";
 
@@ -179,17 +182,17 @@ function showEvents() {
       let eventDescription = document.createElement("div");
       eventDescription.className = "eventCard-description";
 
-      eventHeader.appendChild(document.createTextNode(key));
+      eventHeader.appendChild(document.createTextNode(note.title));
       eventContainer.appendChild(eventHeader);
 
-      eventDescription.appendChild(document.createTextNode(objWithDate[key]));
+      eventDescription.appendChild(document.createTextNode(note.description));
       eventContainer.appendChild(eventDescription);
 
       let markWrapper = document.createElement("div");
       markWrapper.className = "eventCard-mark-wrapper";
       let mark = document.createElement("div");
       mark.classList = "eventCard-mark";
-      mark.innerHTML=`<a href="/notes/detail">
+      mark.innerHTML = `<a href=notes/${note._id}/detail>
       <img class="edit-img" src="/images/edit.png">;
     </a>`;
       markWrapper.appendChild(mark);
@@ -198,7 +201,7 @@ function showEvents() {
       sidebarEvents.appendChild(eventContainer);
 
       eventsCount++;
-    }
+    })
     let emptyFormMessage = document.getElementById("emptyFormTitle");
     emptyFormMessage.innerHTML = `${eventsCount} events now`;
   } else {
@@ -282,8 +285,11 @@ addEventButton.onclick = function (e) {
     return;
   }
 
-  addEvent(title, desc);
-  showEvents();
+  axios.post(window.location.href, { title, description: desc, date: selectedDate.toISOString() })
+    .then(() => {
+      showEvents();
+    })
+
 
   if (!selectedDayBlock.querySelector(".day-mark")) {
     selectedDayBlock.appendChild(document.createElement("div")).className =
