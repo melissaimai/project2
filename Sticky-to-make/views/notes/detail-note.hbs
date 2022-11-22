@@ -3,7 +3,7 @@
   <div class="nav-links">
     <ul class="nav-menu">
       <li class="active"><a href="">Contact Us</a></li>
-      <li class='active'><a href ="/logout">Log Out</a></li>
+      <li class='active'><a href="/logout">Log Out</a></li>
     </ul>
   </div>
 </nav>
@@ -20,6 +20,12 @@
     <div>
       <span class="title-text3">Description : </span>
       <textarea readonly class="textarea2" rows="7" cols="50">{{note.description}}</textarea>
+    </div>
+
+    <div class="form-check">
+      <input class="title-text3" type="checkbox" onclick="return false;" disabled="disabled" {{#if
+        note.taskDone}}checked{{/if}} id="flexCheckDefault" name="checkbox" />
+      <label class="form-check-label" for="flexCheckDefault">Task completed </label>
     </div>
 
     <div class="centre-button-detail">

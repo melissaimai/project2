@@ -42,11 +42,18 @@ router.get("/notes/:id/edit", isLoggedIn, (req, res) => {
       console.error("Error while retrieving note details: ", error);
     });
 });
+
 router.post("/notes/:id/edit", (req, res, next) => {
   const { id } = req.params;
-  const { title, description } = req.body;
+  const { title, description, checkbox } = req.body;
 
-  Notes.findByIdAndUpdate(id, { title, description }, { new: true })
+  let taskDone = checkbox ? true : false
+
+  Notes.findByIdAndUpdate(
+    id,
+    { title, description, taskDone },
+    { new: true }
+  )
     .then((updatedNote) => {
       updatedNote.save();
     })
@@ -55,7 +62,7 @@ router.post("/notes/:id/edit", (req, res, next) => {
 });
 
 //create note
-router.post("/dashboard", isLoggedIn, (req, res, next) => {
+router.post("/notes/create", isLoggedIn, (req, res, next) => {
   const { title, description, date } = req.body;
 
   Notes.create({
@@ -73,8 +80,8 @@ router.post("/dashboard", isLoggedIn, (req, res, next) => {
 });
 
 //list all notes
-router.get("/dashboard", isLoggedIn, (req, res, next) => {
-  const query = {};
+router.get('/dashboard', isLoggedIn, (req, res, next) => {
+  const query = {}
 
   Notes.find(query)
     .populate("owner")
