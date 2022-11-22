@@ -8,6 +8,10 @@ const notesSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'User'
     },
+    taskDone: {
+      type: Boolean,
+      default: false
+    },
     date: Date
   });
 

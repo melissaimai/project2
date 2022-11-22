@@ -65,11 +65,11 @@ function createCalendar(date, side) {
         if (
           (selectedDayBlock == null && i == currentDate.getDate()) ||
           selectedDate.toDateString() ==
-            new Date(
-              currentDate.getFullYear(),
-              currentDate.getMonth(),
-              i
-            ).toDateString()
+          new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            i
+          ).toDateString()
         ) {
           selectedDate = new Date(
             currentDate.getFullYear(),
@@ -95,11 +95,11 @@ function createCalendar(date, side) {
         //show marks
         if (
           globalEventObj[
-            new Date(
-              currentDate.getFullYear(),
-              currentDate.getMonth(),
-              i
-            ).toDateString()
+          new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            i
+          ).toDateString()
           ]
         ) {
           let eventMark = document.createElement("div");
@@ -167,9 +167,9 @@ async function showEvents() {
   const currentUser = await axios.get("/currentUser");
   const response = await axios.get(
     `http://localhost:3000/notes/` +
-      selectedDate.toDateString() +
-      "/" +
-      currentUser.data._id
+    selectedDate.toDateString() +
+    "/" +
+    currentUser.data._id
   );
   const notesArray = response.data.data;
 
@@ -292,7 +292,7 @@ addEventButton.onclick = async function (e) {
   }
 
   axios
-    .post(window.location.href, {
+    .post(`http://${window.location.host}/notes/create`, {
       title,
       description: desc,
       date: selectedDate.toISOString(),
