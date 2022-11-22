@@ -199,7 +199,7 @@ async function showEvents() {
       let mark = document.createElement("div");
       mark.classList = "eventCard-mark";
       mark.innerHTML = `<a href=notes/${note._id}/detail>
-      <img class="edit-img" src="/images/edit.png">;
+      <img class="edit-img" src="/images/edit.png">
     </a>`;
       markWrapper.appendChild(mark);
       eventContainer.appendChild(markWrapper);
