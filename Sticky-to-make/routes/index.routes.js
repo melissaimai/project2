@@ -55,14 +55,14 @@ router.post("/notes/:id/edit", (req, res, next) => {
 });
 
 //create note
-router.post("/dashboard", (req, res, next) => {
-  const { title, description, date, owner } = req.body;
+router.post("/dashboard", isLoggedIn, (req, res, next) => {
+  const { title, description, date } = req.body;
 
   Notes.create({
     title,
     description,
     date: new Date(moment(date).format("YYYY-MM-DD")),
-    owner,
+    owner: req.session.User._id,
   })
     .then(() => {
       res.sendStatus(201);

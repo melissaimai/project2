@@ -291,20 +291,16 @@ addEventButton.onclick = async function (e) {
     return;
   }
 
-  const currentUser = await axios.get("/currentUser");
+  axios
+    .post(window.location.href, {
+      title,
+      description: desc,
+      date: selectedDate.toISOString(),
+    })
+    .then(() => {
+      showEvents();
+    });
 
-  if (currentUser) {
-    axios
-      .post(window.location.href, {
-        title,
-        description: desc,
-        date: selectedDate.toISOString(),
-        owner: currentUser.data._id,
-      })
-      .then(() => {
-        showEvents();
-      });
-  }
   // });
 
   if (!selectedDayBlock.querySelector(".day-mark")) {
