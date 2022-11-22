@@ -46,12 +46,12 @@ router.get("/notes/:id/edit", (req, res) => {
     });
 });
 router.post("/notes/:id/edit", (req, res, next) => {
-  const { id} = req.params;
-  const { title, description} = req.body;
+  const { id } = req.params;
+  const { title, description } = req.body;
 
   Notes.findByIdAndUpdate(
     id,
-    { title, description},
+    { title, description },
     { new: true }
   )
     .then((updatedNote) => {
@@ -62,7 +62,7 @@ router.post("/notes/:id/edit", (req, res, next) => {
 });
 
 
-
+//create note
 router.post('/initial', (req, res, next) => {
   const { title, description, date } = req.body
   // const userId = req.session.user._id
@@ -70,8 +70,8 @@ router.post('/initial', (req, res, next) => {
     .then(() => {
       res.sendStatus(201)
     })
-    .catch(err => {
-      next(err)
+    .catch(error => {
+      next(error)
     })
 });
 
@@ -84,22 +84,31 @@ router.get('/initial', (req, res, next) => {
     .then(notes => {
       res.render('initial', { notes })
     })
-    .catch(err => {
-      next(err)
+    .catch(error => {
+      next(error)
     })
 });
 
+//
 router.get('/notes/:date', (req, res) => {
   const { date } = req.params
   Notes.find({ date: new Date(moment(date).format("YYYY-MM-DD")) })
     .then(notes => {
       return res.json({ data: notes })
     })
-    .catch(err => {
-      console.log(err)
+    .catch(error => {
+      console.log(error)
     })
 });
 
-
+//Delete a note
+router.post('/notes/:noteId/delete', (req, res) => {
+  const { noteId } = req.params;
+  Notes.findByIdAndRemove(noteId)
+    .then(() => res.redirect('/dashboard'))
+    .catch(error => {
+      console.log("Error while deleting a note from the DB: ", error);
+    })
+})
 
 module.exports = router;
