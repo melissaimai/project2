@@ -65,11 +65,11 @@ function createCalendar(date, side) {
         if (
           (selectedDayBlock == null && i == currentDate.getDate()) ||
           selectedDate.toDateString() ==
-          new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth(),
-            i
-          ).toDateString()
+            new Date(
+              currentDate.getFullYear(),
+              currentDate.getMonth(),
+              i
+            ).toDateString()
         ) {
           selectedDate = new Date(
             currentDate.getFullYear(),
@@ -95,11 +95,11 @@ function createCalendar(date, side) {
         //show marks
         if (
           globalEventObj[
-          new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth(),
-            i
-          ).toDateString()
+            new Date(
+              currentDate.getFullYear(),
+              currentDate.getMonth(),
+              i
+            ).toDateString()
           ]
         ) {
           let eventMark = document.createElement("div");
@@ -164,15 +164,21 @@ function addEvent(title, desc) {
 
 async function showEvents() {
   let sidebarEvents = document.getElementById("sidebarEvents");
-  const response = await axios.get(`http://localhost:3000/notes/` + selectedDate.toDateString())
-  const notesArray = response.data.data
+  const currentUser = await axios.get("/currentUser");
+  const response = await axios.get(
+    `http://localhost:3000/notes/` +
+      selectedDate.toDateString() +
+      "/" +
+      currentUser.data._id
+  );
+  const notesArray = response.data.data;
 
   sidebarEvents.innerHTML = "";
 
   if (notesArray[0]) {
     let eventsCount = 0;
 
-    notesArray.forEach(note => {
+    notesArray.forEach((note) => {
       let eventContainer = document.createElement("div");
       eventContainer.className = "eventCard";
 
@@ -201,7 +207,7 @@ async function showEvents() {
       sidebarEvents.appendChild(eventContainer);
 
       eventsCount++;
-    })
+    });
     let emptyFormMessage = document.getElementById("emptyFormTitle");
     emptyFormMessage.innerHTML = `${eventsCount} events now`;
   } else {
@@ -271,7 +277,7 @@ cancelAdd.onclick = function (e) {
 };
 
 var addEventButton = document.getElementById("addEventButton");
-addEventButton.onclick = function (e) {
+addEventButton.onclick = async function (e) {
   let title = document.getElementById("eventTitleInput").value.trim();
   let desc = document.getElementById("eventDescInput").value.trim();
 
@@ -285,11 +291,21 @@ addEventButton.onclick = function (e) {
     return;
   }
 
-  axios.post(window.location.href, { title, description: desc, date: selectedDate.toISOString() })
-    .then(() => {
-      showEvents();
-    })
+  const currentUser = await axios.get("/currentUser");
 
+  if (currentUser) {
+    axios
+      .post(window.location.href, {
+        title,
+        description: desc,
+        date: selectedDate.toISOString(),
+        owner: currentUser.data._id,
+      })
+      .then(() => {
+        showEvents();
+      });
+  }
+  // });
 
   if (!selectedDayBlock.querySelector(".day-mark")) {
     selectedDayBlock.appendChild(document.createElement("div")).className =
