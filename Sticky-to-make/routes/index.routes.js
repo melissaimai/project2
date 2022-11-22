@@ -4,24 +4,22 @@ const Notes = require('../models/Notes.model')
 
 const moment = require('moment')
 
-/* GET home page */
-// router.get("/", (req, res, next) => {
-//   res.render("index");
-// });
+//middleware
+const { isLoggedIn} = require('../middleware/route-guard.js');
 
-router.get("/", (req, res, next) => {
+
+// Landing Page
+router.get("/",(req, res, next) => {
   res.render("index");
 });
 
-router.get("/dashboard", (req, res, next) => {
+//Dashboard
+router.get("/dashboard",isLoggedIn, (req, res, next) => {
   res.render("initial");
 });
 
-router.get("/notes/create", (req, res, next) => {
-  res.render("notes/new-note");
-});
 // Get single note detail
-router.get("/notes/:id/detail", (req, res) => {
+router.get("/notes/:id/detail",isLoggedIn, (req, res) => {
   const { id } = req.params;
   Notes.findById(id)
     .then((notefromDB) => {
@@ -35,7 +33,7 @@ router.get("/notes/:id/detail", (req, res) => {
 });
 
 // View & Update single Note
-router.get("/notes/:id/edit", (req, res) => {
+router.get("/notes/:id/edit",isLoggedIn, (req, res) => {
   const { id } = req.params;
   Notes.findById(id)
     .then((theNote) => {
@@ -76,7 +74,7 @@ router.post('/dashboard', (req, res, next) => {
 });
 
 //list all notes
-router.get('/dashboard', (req, res, next) => {
+router.get('/dashboard',isLoggedIn, (req, res, next) => {
   const query = {}
 
   Notes.find(query)
@@ -90,7 +88,7 @@ router.get('/dashboard', (req, res, next) => {
 });
 
 //
-router.get('/notes/:date', (req, res) => {
+router.get('/notes/:date',isLoggedIn, (req, res) => {
   const { date } = req.params
   Notes.find({ date: new Date(moment(date).format("YYYY-MM-DD")) })
     .then(notes => {

@@ -10,8 +10,11 @@ const saltRounds = 10;
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
 
+//middleware
+const { isLoggedOut } = require('../middleware/route-guard.js');
+
 // GET /auth/signup FORM
-router.get("/auth/signup", (req, res) => {
+router.get("/auth/signup",isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
@@ -53,7 +56,7 @@ router.post("/auth/signup", async (req, res) => {
 });
 
 //LOGIN GET /auth/LOGIN FORM
-router.get("/login", (req, res) => res.render("auth/login"));
+router.get("/login",isLoggedOut, (req, res) => res.render("auth/login"));
 
 //LOGIN POST /auth/LOGIN GET EXISTING USER FROM DB
 router.post("/login", (req, res, next) => {
@@ -80,16 +83,10 @@ router.post("/login", (req, res, next) => {
 });
 
 //POST  /logout
-router.get("/logout", (req, res, next) => {
+router.get("/logout",(req, res, next) => {
   // Logout user
   req.session.destroy();
   res.redirect("/");
 });
-// router.post('/logout', (req, res, next) => {
-//   req.session.destroy(err => {
-//     if (err) next(err);
-//     res.redirect('/');
-//   });
-// });
 
 module.exports = router;
