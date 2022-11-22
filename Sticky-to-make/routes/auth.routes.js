@@ -79,11 +79,17 @@ router.post("/login", (req, res, next) => {
   });
 });
 
-// GET /auth/logout
-router.get("/auth/logout", (req, res, next) => {
+//POST  /logout
+router.get("/logout", (req, res, next) => {
   // Logout user
   req.session.destroy();
   res.redirect("/");
 });
+// router.post('/logout', (req, res, next) => {
+//   req.session.destroy(err => {
+//     if (err) next(err);
+//     res.redirect('/');
+//   });
+// });
 
 module.exports = router;
