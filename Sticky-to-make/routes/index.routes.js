@@ -63,7 +63,7 @@ router.post("/notes/:id/edit", (req, res, next) => {
 
 
 //create note
-router.post('/initial', (req, res, next) => {
+router.post('/dashboard', (req, res, next) => {
   const { title, description, date } = req.body
   // const userId = req.session.user._id
   Notes.create({ title, description, date: new Date(moment(date).format("YYYY-MM-DD")) })
@@ -76,7 +76,7 @@ router.post('/initial', (req, res, next) => {
 });
 
 //list all notes
-router.get('/initial', (req, res, next) => {
+router.get('/dashboard', (req, res, next) => {
   const query = {}
 
   Notes.find(query)
