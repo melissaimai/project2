@@ -317,3 +317,7 @@ addEventButton.onclick = async function (e) {
     labels[i].className = "";
   }
 };
+addEventListener("load", (event) => {
+  event.preventDefault();
+  showEvents();
+});
