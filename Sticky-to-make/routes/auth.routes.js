@@ -82,9 +82,7 @@ router.post("/login", (req, res, next) => {
   });
 });
 
-router.get("/currentUser", isLoggedIn, (req, res) => {
-  res.send(req.session.User);
-});
+
 
 //POST  /logout
 router.get("/logout", (req, res, next) => {
