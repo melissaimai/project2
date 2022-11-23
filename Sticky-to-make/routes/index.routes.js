@@ -62,6 +62,7 @@ router.post("/notes/:id/edit", (req, res, next) => {
 });
 
 //create note
+//axios call to display note,once created for the User on the Date
 router.post("/notes/create", isLoggedIn, (req, res, next) => {
   const { title, description, date } = req.body;
 
@@ -78,27 +79,12 @@ router.post("/notes/create", isLoggedIn, (req, res, next) => {
       next(error);
     });
 });
-
-//list all notes
-router.get('/dashboard', isLoggedIn, (req, res, next) => {
-  const query = {}
-
-  Notes.find(query)
-    .populate("owner")
-    .then((notes) => {
-      res.render("initial", { notes });
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
-
-//
-router.get("/notes/:date/:ownerId", isLoggedIn, (req, res) => {
-  const { date, ownerId } = req.params;
+//axios calls this for showEvents() ..to display all notes for that Date for that User
+router.get("/notes/:date", isLoggedIn, (req, res) => {
+  const { date} = req.params;
   Notes.find({
     date: new Date(moment(date).format("YYYY-MM-DD")),
-    owner: ownerId,
+    owner: req.session.User._id,
   })
     .then((notes) => {
       return res.json({ data: notes });

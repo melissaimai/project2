@@ -164,12 +164,11 @@ function addEvent(title, desc) {
 
 async function showEvents() {
   let sidebarEvents = document.getElementById("sidebarEvents");
-  const currentUser = await axios.get("/currentUser");
+  
   const response = await axios.get(
     `http://localhost:3000/notes/` +
-    selectedDate.toDateString() +
-    "/" +
-    currentUser.data._id
+    selectedDate.toDateString() 
+   
   );
   const notesArray = response.data.data;
 
