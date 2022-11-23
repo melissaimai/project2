@@ -43,7 +43,7 @@ router.get("/notes/:id/edit", isLoggedIn, (req, res) => {
     });
 });
 
-router.post("/notes/:id/edit", (req, res, next) => {
+router.post("/notes/:id/edit", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   const { title, description, checkbox } = req.body;
 
@@ -95,7 +95,7 @@ router.get("/notes/:date", isLoggedIn, (req, res) => {
 });
 
 //Delete a note
-router.post("/notes/:noteId/delete", (req, res) => {
+router.post("/notes/:noteId/delete", isLoggedIn, (req, res) => {
   const { noteId } = req.params;
   Notes.findByIdAndRemove(noteId)
     .then(() => res.redirect("/dashboard"))

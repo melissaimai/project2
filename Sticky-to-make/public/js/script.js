@@ -164,11 +164,11 @@ function addEvent(title, desc) {
 
 async function showEvents() {
   let sidebarEvents = document.getElementById("sidebarEvents");
-  
+
   const response = await axios.get(
     `http://localhost:3000/notes/` +
-    selectedDate.toDateString() 
-   
+    selectedDate.toDateString()
+
   );
   const notesArray = response.data.data;
 
@@ -182,10 +182,18 @@ async function showEvents() {
       eventContainer.className = "eventCard";
 
       let eventHeader = document.createElement("div");
-      eventHeader.className = "eventCard-header";
+      if (note.taskDone) {
+        eventHeader.className = "eventCard-header-done";
+      } else {
+        eventHeader.className = "eventCard-header";
+      }
 
       let eventDescription = document.createElement("div");
-      eventDescription.className = "eventCard-description";
+      if (note.taskDone) {
+        eventDescription.className = "eventCard-description-done";
+      } else {
+        eventDescription.className = "eventCard-description";
+      }
 
       eventHeader.appendChild(document.createTextNode(note.title));
       eventContainer.appendChild(eventHeader);

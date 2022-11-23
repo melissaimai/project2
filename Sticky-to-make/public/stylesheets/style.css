@@ -57,7 +57,7 @@ h3,h4,h5 {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   text-align: center;
-  background-color: #4b6289 !important;
+  background-color: #c4bcb4 !important;
   position: relative;
   overflow: hidden;
 }
@@ -110,7 +110,7 @@ h3,h4,h5 {
 
 .sidebar-wrapper {
   color: #fff;
-  background-color: #5a649c !important;
+  background-color: #c4bcb4  !important;
   padding-top: 0;
   padding-bottom: 20px;
   font-family: 'Roboto', sans-serif;
@@ -142,7 +142,7 @@ h3,h4,h5 {
   background-color: #fff;
   color: black;
   padding: 12px 24px 12px 24px;
-  border-bottom: 1px solid #E5E5E5;
+  border: 1px solid #E5E5E5;
   white-space: nowrap;
   position: relative;
   animation: slideInDown 0.5s;
@@ -155,6 +155,17 @@ h3,h4,h5 {
 .eventCard-description {
   color: grey;
 }
+
+.eventCard-header-done {
+  font-weight: bold;
+  text-decoration: line-through;
+}
+
+.eventCard-description-done {
+  color: grey;
+  text-decoration: line-through;
+}
+
 
 .eventCard-mark-wrapper {
   position: absolute;
