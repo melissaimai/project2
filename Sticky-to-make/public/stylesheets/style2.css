@@ -29,7 +29,7 @@ margin-right: 20px;
 span{
   display: flex;
   padding: 20px;
-  margin-right: 50px;
+  /* margin-right: 50px; */
 }
 
 .header{
@@ -177,4 +177,8 @@ span{
     margin-bottom:0;
     font-size:13px;
     opacity:0.6;
+  }
+  
+  .icon{
+  padding: 1px;
   }
