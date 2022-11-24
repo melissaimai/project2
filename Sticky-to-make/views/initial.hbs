@@ -30,10 +30,13 @@
 
   <div class="main-wrapper">
 
-    <nav class="nav-dash">
-      <ul>
+    <nav class="nav-dash navbar">
+      {{!-- <ul>
         <li><a class="dash-logout" href="/logout">Log Out</a></li>
-      </ul>
+      </ul> --}}
+       <div class="logout-btn">
+      <a class="button-83" href="/logout">Logout</a>
+    </div>
     </nav>
 
     <div class="sidebar-wrapper z-depth-2 side-nav fixed" id="sidebar">
@@ -41,8 +44,6 @@
       <div class="sidebar-title">
         <h4>Events</h4>
         <h5 id="eventDayName">Date</h5>
-        {{!-- <a class="btn btn-primary" href="/notes/create" role="button">Create a
-          note</a> --}}
       </div>
       <div class="sidebar-events" id="sidebarEvents">
       </div>
