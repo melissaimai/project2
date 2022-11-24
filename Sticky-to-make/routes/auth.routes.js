@@ -72,13 +72,13 @@ router.post("/login", (req, res, next) => {
 
   User.findOne({ username }).then((userFromDB) => {
     if (!userFromDB) {
-      res.render("auth/login", { errorMessage: " Oops!!Wrong credentials" });
+      res.render("auth/login", { errorMessage: " Oops!! Wrong credentials" });
     }
     if (bcrypt.compareSync(password, userFromDB.password)) {
       req.session.User = userFromDB;
       res.redirect("/dashboard");
     } else
-      res.render("auth/login", { errorMessage: " Oops!!Wrong credentials" });
+      res.render("auth/login", { errorMessage: " Oops!! Wrong credentials" });
   });
 });
 

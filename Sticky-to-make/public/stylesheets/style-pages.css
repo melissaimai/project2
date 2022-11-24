@@ -3,7 +3,8 @@
   padding-left: 30px;
   flex-direction: row;
   background-color: #C29A74;
-  /* position: absolute; */
+  align-items: center;
+  justify-content: space-between;
   }
   
   .nav-bar{
@@ -55,7 +56,10 @@ span{
  padding-bottom: 7px;
  padding-top: 25px;
 }
-  
+ .title-text4{
+  font-size: 20px;
+  padding-top: 20px;
+ } 
 .btn2{
   display: flex;
 }
