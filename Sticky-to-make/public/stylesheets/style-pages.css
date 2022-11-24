@@ -28,43 +28,60 @@
   margin-right: 20px;
     }
     
-  span{
-    display: flex;
-    padding: 20px;
-    margin-right: 50px;
-
-  }
-  
-
-  .textarea1{
-    background-color: rgb(145, 138, 138);
-    border-radius: 10px;
-    pointer-events: none;
-  }
-  
-  .btn2{
+span{
   display: flex;
-  }
+  padding-bottom: 30px;
+  padding-top: 20px;
+}
+    
+.logout-btn{
+   margin-right: 50px;
+}
+
+.textarea1{
+  background-color: rgb(145, 138, 138);
+  border-radius: 10px;
+  pointer-events: none;
+  padding: 8px;
+  color: white;
+}
+
+.textarea2{
+  padding: 8px;
+}
+
+.title-text2, .title-text3, .form-check-label {
+ font-size:20px;
+ padding-bottom: 7px;
+ padding-top: 25px;
+}
   
-  .btn2 form{
-    display: flex;
-    flex-direction: row;
-    width: 20%;
-    }
+.btn2{
+  display: flex;
+}
 
 .form-check{
 margin-top: 10px;
 }
    
    .wrapper2{
-   margin-left: 300px
+   margin-left: 300px;
+   margin-top: 60px;
    }
+    
+   .submit-edit-btn{
+   margin-top: 50px;
+   display: flex;
+   } 
    
-   span2{
-   padding-left:300px
+   .btn-delete{
+    padding-top: 0px;
    }
     
-    
+    .main__button3{
+    padding-left:40px;
+    padding-right:40px
+    }
     
   @font-face {
     font-family: "ElMessiri-SemiBold";
@@ -129,7 +146,7 @@ margin-top: 10px;
     width: 50%;
     padding-right: 15px; }
   
-  form {
+  form, section {
     width: 50%;
     padding-top: 77px;
     padding-right: 60px;
