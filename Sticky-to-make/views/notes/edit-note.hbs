@@ -12,33 +12,35 @@
 <body>
 
   <nav class="navbar">
-    <a href="/">
+    <a href="/dashboard">
       <h1> <img src="/images/clock.png" width="80" height="80" alt="clock">
         <strong>Plan</strong>Away
       </h1>
     </a>
-
-    <span2>
-      <a class="button-83" href="/dashboard">Dashboard</a>
-    </span2>
+    <div class="logout-btn">
+      <a class="button-83" href="/logout">Logout</a>
+    </div>
   </nav>
-  <div class="wrapper2">
-    <div class="inner2">
+
+  <div class="wrapper">
+    <div class="inner">
+
+      <div class="image-holder">
+        <img src="/images/drinkwater.png" alt="">
+      </div>
 
       <form onsubmit="onSubmit()" action="/notes/{{note._id}}/edit" method="POST">
 
-        <div class="title-wrapper">
-          <h2 class="title-text1">Edit Note </h2>
-        </div>
-        <div>
+        <h3>Edit Note</h3>
 
-          <span class="title-text2">Title : </span>
-          <textarea name="title" class="textarea3" rows="2" cols="30">{{note.title}}</textarea>
+        <div class="form-edit">
+          <span class="title-text3">Title : </span>
+          <textarea name="title" class="textarea2" rows="2" cols="30">{{note.title}}</textarea>
         </div>
 
-        <div>
+        <div class="form-edit">
           <span class="title-text3">Description : </span>
-          <textarea name="description" class="textarea4" rows="7" cols="50">{{note.description}}</textarea>
+          <textarea name="description" class="textarea2" rows="7" cols="50">{{note.description}}</textarea>
         </div>
 
         <div class="form-check">
@@ -49,9 +51,9 @@
 
 
         <div class="btn2">
-
-          <button class="main__button" value="submit">Submit Edit</button>
-
+          <div class="submit-edit-btn">
+            <button class="main__button" value="submit">Submit Edit</button>
+          </div>
         </div>
       </form>
 
