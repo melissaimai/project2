@@ -328,145 +328,174 @@ addEventListener("load", (event) => {
 });
 
 //from here
-
 weatherUpdate = todayDayName.appendChild(document.createElement("p"));
 weatherUpdate.classList.add("weatherUpdate");
 weatherUpdate.innerText = "";
 
 addEventListener("click", async (event) => {
- 
   const response = await axios.get(
     "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&timezone=Europe/Berlin&daily=weathercode,temperature_2m_max,temperature_2m_min"
   );
- 
 
+  const selectDateString =
+    selectedDate.getFullYear() +
+    "-" +
+    (selectedDate.getMonth() + 1) +
+    "-" +
+    selectedDate.getDate();
   const nextSevenDays = response.data.daily.time;
- 
-  for (singleDay of nextSevenDays) {
-    if (String(selectedDate).includes(singleDay.slice(-2))) {
-      weatherUpdate.innerText = "";
-      const index = response.data.daily.time.indexOf(singleDay);
-      switch (response.data.daily.weathercode[index]) {
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-          {
-            document.querySelector(".header-background").style.backgroundImage =
-              "url('/images/clear sky.jpeg')";
-            weatherUpdate.innerText =
-              " Maximum Temperature on "+selectedDate.toLocaleString("en-US", {
-                 day: "numeric",
-               month: "short"})+" - "+
-              response.data.daily.temperature_2m_max[index] +
-              "°C";
-          }
-          break;
-        case 45:
-        case 48:
-          {
-            document.querySelector(".header-background").style.backgroundImage =
-              "url('/images/foggy.jpeg')";
-            weatherUpdate.innerText =
-            " Maximum Temperature on "+selectedDate.toLocaleString("en-US", {
-              day: "numeric",
-            month: "short"})+" - "+
-              response.data.daily.temperature_2m_max[index] +
-              "°C";
-          }
-          break;
-        case 56:
-        case 57:
-        case 66:
-        case 67:
-          {
-            document.querySelector(".header-background").style.backgroundImage =
-              "url('/images/freezingdrizzle.jpeg')";
-            weatherUpdate.innerText =
-            " Maximum Temperature on "+selectedDate.toLocaleString("en-US", {
-              day: "numeric",
-            month: "short"})+" - "+
-              response.data.daily.temperature_2m_max[index] +
-              "°C";
-          }
-          break;
-        case 61:
-        case 63:
-        case 65:
-          {
-            document.querySelector(".header-background").style.backgroundImage =
-              "url('/images/rainyandcold.jpeg')";
-            weatherUpdate.innerText =
-            " Maximum Temperature on "+selectedDate.toLocaleString("en-US", {
-              day: "numeric",
-            month: "short"})+" : "+
-              response.data.daily.temperature_2m_max[index] +
-              "°C";
-          }
-          break;
-        case 51:
-        case 53:
-        case 55:
-        case 80:
-          {
-            document.querySelector(".header-background").style.backgroundImage =
-              "url('/images/rain.jpeg')";
-            weatherUpdate.innerText =
-            " Maximum Temperature on "+selectedDate.toLocaleString("en-US", {
-              day: "numeric",
-            month: "short"})+" : "+
-              response.data.daily.temperature_2m_max[index] +
-              "°C";
-          }
-          break;
-        case 85:
-        case 86:
-        case 77:
-          {
-            document.querySelector(".header-background").style.backgroundImage =
-              "url('/images/snowshowers.jpeg')";
-            weatherUpdate.innerText =
-            " Maximum Temperature on "+selectedDate.toLocaleString("en-US", {
-              day: "numeric",
-            month: "short"})+" : "+
-              response.data.daily.temperature_2m_max[index] +
-              "°C";
-          }
-          break;
-        case 95:
-        case 96:
-        case 99:
-          {
-            document.querySelector(".header-background").style.backgroundImage =
-              "url('/images/thunderstorm.jpeg')";
-            weatherUpdate.innerText =
-            " Maximum Temperature on "+selectedDate.toLocaleString("en-US", {
-              day: "numeric",
-            month: "short"})+" : "+
-              response.data.daily.temperature_2m_max[index] +
-              "°C";
-          }
-          break;
-        case 71:
-        case 73:
-        case 75:
-          {
-            document.querySelector(".header-background").style.backgroundImage =
-              "url('/images/snowfall.webp')";
-            weatherUpdate.innerText =
-            " Maximum Temperature on "+selectedDate.toLocaleString("en-US", {
-              day: "numeric",
-            month: "short"})+" : "+
-              response.data.daily.temperature_2m_max[index] +
-              "°C";
-          }
-          break;
-        default: {
+
+  if (nextSevenDays.includes(selectDateString)) {
+    weatherUpdate.innerText = "";
+    const index = response.data.daily.time.indexOf(selectDateString);
+    switch (response.data.daily.weathercode[index]) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+        {
           document.querySelector(".header-background").style.backgroundImage =
-            "url('https://raw.githubusercontent.com/JustMonk/codepen-resource-project/master/img/compressed-header.jpg')";
-          weatherUpdate.innerText = "";
+            "url('/images/clear sky.jpeg')";
+          weatherUpdate.innerText =
+            " Maximum Temperature on " +
+            selectedDate.toLocaleString("en-US", {
+              day: "numeric",
+              month: "short",
+            }) +
+            " - " +
+            response.data.daily.temperature_2m_max[index] +
+            "°C";
         }
+        break;
+      case 45:
+      case 48:
+        {
+          document.querySelector(".header-background").style.backgroundImage =
+            "url('/images/foggy.jpeg')";
+          weatherUpdate.innerText =
+            " Maximum Temperature on " +
+            selectedDate.toLocaleString("en-US", {
+              day: "numeric",
+              month: "short",
+            }) +
+            " - " +
+            response.data.daily.temperature_2m_max[index] +
+            "°C";
+        }
+        break;
+      case 56:
+      case 57:
+      case 66:
+      case 67:
+        {
+          document.querySelector(".header-background").style.backgroundImage =
+            "url('/images/freezingdrizzle.jpeg')";
+          weatherUpdate.innerText =
+            " Maximum Temperature on " +
+            selectedDate.toLocaleString("en-US", {
+              day: "numeric",
+              month: "short",
+            }) +
+            " - " +
+            response.data.daily.temperature_2m_max[index] +
+            "°C";
+        }
+        break;
+      case 61:
+      case 63:
+      case 65:
+        {
+          document.querySelector(".header-background").style.backgroundImage =
+            "url('/images/rainyandcold.jpeg')";
+          weatherUpdate.innerText =
+            " Maximum Temperature on " +
+            selectedDate.toLocaleString("en-US", {
+              day: "numeric",
+              month: "short",
+            }) +
+            " : " +
+            response.data.daily.temperature_2m_max[index] +
+            "°C";
+        }
+        break;
+      case 51:
+      case 53:
+      case 55:
+      case 80:
+        {
+          document.querySelector(".header-background").style.backgroundImage =
+            "url('/images/rain.jpeg')";
+          weatherUpdate.innerText =
+            " Maximum Temperature on " +
+            selectedDate.toLocaleString("en-US", {
+              day: "numeric",
+              month: "short",
+            }) +
+            " : " +
+            response.data.daily.temperature_2m_max[index] +
+            "°C";
+        }
+        break;
+      case 85:
+      case 86:
+      case 77:
+        {
+          document.querySelector(".header-background").style.backgroundImage =
+            "url('/images/snowshowers.jpeg')";
+          weatherUpdate.innerText =
+            " Maximum Temperature on " +
+            selectedDate.toLocaleString("en-US", {
+              day: "numeric",
+              month: "short",
+            }) +
+            " : " +
+            response.data.daily.temperature_2m_max[index] +
+            "°C";
+        }
+        break;
+      case 95:
+      case 96:
+      case 99:
+        {
+          document.querySelector(".header-background").style.backgroundImage =
+            "url('/images/thunderstorm.jpeg')";
+          weatherUpdate.innerText =
+            " Maximum Temperature on " +
+            selectedDate.toLocaleString("en-US", {
+              day: "numeric",
+              month: "short",
+            }) +
+            " : " +
+            response.data.daily.temperature_2m_max[index] +
+            "°C";
+        }
+        break;
+      case 71:
+      case 73:
+      case 75:
+        {
+          document.querySelector(".header-background").style.backgroundImage =
+            "url('/images/snowfall.webp')";
+          weatherUpdate.innerText =
+            " Maximum Temperature on " +
+            selectedDate.toLocaleString("en-US", {
+              day: "numeric",
+              month: "short",
+            }) +
+            " : " +
+            response.data.daily.temperature_2m_max[index] +
+            "°C";
+        }
+        break;
+      default: {
+        document.querySelector(".header-background").style.backgroundImage =
+          "url('https://raw.githubusercontent.com/JustMonk/codepen-resource-project/master/img/compressed-header.jpg')";
+        weatherUpdate.innerText = "";
       }
     }
+  } else {
+    document.querySelector(".header-background").style.backgroundImage =
+      "url('https://raw.githubusercontent.com/JustMonk/codepen-resource-project/master/img/compressed-header.jpg')";
+    weatherUpdate.innerText = "";
   }
 });
