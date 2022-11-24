@@ -65,11 +65,11 @@ function createCalendar(date, side) {
         if (
           (selectedDayBlock == null && i == currentDate.getDate()) ||
           selectedDate.toDateString() ==
-          new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth(),
-            i
-          ).toDateString()
+            new Date(
+              currentDate.getFullYear(),
+              currentDate.getMonth(),
+              i
+            ).toDateString()
         ) {
           selectedDate = new Date(
             currentDate.getFullYear(),
@@ -95,11 +95,11 @@ function createCalendar(date, side) {
         //show marks
         if (
           globalEventObj[
-          new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth(),
-            i
-          ).toDateString()
+            new Date(
+              currentDate.getFullYear(),
+              currentDate.getMonth(),
+              i
+            ).toDateString()
           ]
         ) {
           let eventMark = document.createElement("div");
@@ -166,9 +166,7 @@ async function showEvents() {
   let sidebarEvents = document.getElementById("sidebarEvents");
 
   const response = await axios.get(
-    `http://localhost:3000/notes/` +
-    selectedDate.toDateString()
-
+    `http://localhost:3000/notes/` + selectedDate.toDateString()
   );
   const notesArray = response.data.data;
 
@@ -327,4 +325,161 @@ addEventButton.onclick = async function (e) {
 addEventListener("load", (event) => {
   event.preventDefault();
   showEvents();
+});
+
+//from here
+
+// todayDayName.innerHTML =
+//   "Today is " +
+//   currentDate.toLocaleString("en-US", {
+//     weekday: "long",
+//     day: "numeric",
+//     month: "short",
+//   })
+
+weatherUpdate = todayDayName.appendChild(document.createElement("p"));
+weatherUpdate.innerText = "";
+
+addEventListener("click", async (event) => {
+  //event.preventDefault();
+  const response = await axios.get(
+    "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&timezone=Europe/Berlin&daily=weathercode,temperature_2m_max,temperature_2m_min"
+  );
+ // console.log(response.data.daily.time);
+ // console.log("WC ", response.data.daily.weathercode);
+  //console.log('this is selectedDate--> ',selectedDate);
+
+  const nextSevenDays = response.data.daily.time;
+  // if(selectedDate>currentDate && selectedDate <=currentDate+7){
+    
+  // if (
+  //   ((selectedDate.toLocaleString("en-US", {
+  //     day: "numeric",
+  //   })) <
+  //   (currentDate.toLocaleString("en-US", {
+  //     day: "numeric",
+  //   })) &&
+  //    ( selectedDate.toLocaleString("en-US", {
+  //       day: "numeric",
+  //     }) )>
+  //       (currentDate.toLocaleString("en-US", {
+  //         day: "numeric",
+  //       }) +
+  //         7))
+  // ) {
+  //   document.querySelector(".header-background").style.backgroundImage =
+  //     "url('https://raw.githubusercontent.com/JustMonk/codepen-resource-project/master/img/compressed-header.jpg')";
+  //   weatherUpdate.innerText = "";
+  // }
+  for (singleDay of nextSevenDays) {
+    if (String(selectedDate).includes(singleDay.slice(-2))) {
+      weatherUpdate.innerText = "";
+      const index = response.data.daily.time.indexOf(singleDay);
+      switch (response.data.daily.weathercode[index]) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+          {
+            document.querySelector(".header-background").style.backgroundImage =
+              "url('/images/clear sky.jpeg')";
+            weatherUpdate.innerText =
+              " With Maximum Temperature as " +
+              response.data.daily.temperature_2m_max[index] +
+              "°C";
+          }
+          break;
+        case 45:
+        case 48:
+          {
+            document.querySelector(".header-background").style.backgroundImage =
+              "url('/images/foggy.jpeg')";
+            weatherUpdate.innerText =
+              " With Maximum Temperature as " +
+              response.data.daily.temperature_2m_max[index] +
+              "°C";
+          }
+          break;
+        case 56:
+        case 57:
+        case 66:
+        case 67:
+          {
+            document.querySelector(".header-background").style.backgroundImage =
+              "url('/images/freezingdrizzle.jpeg')";
+            weatherUpdate.innerText =
+              " With Maximum Temperature as " +
+              response.data.daily.temperature_2m_max[index] +
+              "°C";
+          }
+          break;
+        case 61:
+        case 63:
+        case 65:
+          {
+            document.querySelector(".header-background").style.backgroundImage =
+              "url('/images/rainyandcold.jpeg')";
+            weatherUpdate.innerText =
+              " With Maximum Temperature as " +
+              response.data.daily.temperature_2m_max[index] +
+              "°C";
+          }
+          break;
+        case 51:
+        case 53:
+        case 55:
+        case 80:
+          {
+            document.querySelector(".header-background").style.backgroundImage =
+              "url('/images/rain.jpeg')";
+            weatherUpdate.innerText =
+              " With Maximum Temperature as " +
+              response.data.daily.temperature_2m_max[index] +
+              "°C";
+          }
+          break;
+        case 85:
+        case 86:
+        case 77:
+          {
+            document.querySelector(".header-background").style.backgroundImage =
+              "url('/images/snowshowers.jpeg')";
+            weatherUpdate.innerText =
+              " With Maximum Temperature as " +
+              response.data.daily.temperature_2m_max[index] +
+              "°C";
+          }
+          break;
+        case 95:
+        case 96:
+        case 99:
+          {
+            document.querySelector(".header-background").style.backgroundImage =
+              "url('/images/thunderstorm.jpeg')";
+            weatherUpdate.innerText =
+              " With Maximum Temperature as " +
+              response.data.daily.temperature_2m_max[index] +
+              "°C";
+          }
+          break;
+        case 71:
+        case 73:
+        case 75:
+          {
+            document.querySelector(".header-background").style.backgroundImage =
+              "url('/images/snowfall.webp')";
+            weatherUpdate.innerText =
+              " With Maximum Temperature as " +
+              response.data.daily.temperature_2m_max[index] +
+              "°C";
+          }
+          break;
+        default: {
+          document.querySelector(".header-background").style.backgroundImage =
+            "url('https://raw.githubusercontent.com/JustMonk/codepen-resource-project/master/img/compressed-header.jpg')";
+          weatherUpdate.innerText = "";
+        }
+      }
+    }
+  }
 });
