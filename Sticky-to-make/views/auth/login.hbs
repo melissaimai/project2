@@ -1,50 +1,53 @@
-<nav class="navbar">
-  <a href="/dashboard" class="logo"><strong>Plan</strong>Away</a>
-  <div class="nav-links">
-    <ul class="nav-menu">
-      <li class="active"><a href="">Contact Us</a></li>
-    </ul>
-  </div>
-</nav>
-<header class="header">
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- STYLE CSS -->
+  <link rel="stylesheet" href="/stylesheets/style-pages.css" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <a href="/">
+      <h1> <img src="../images/clock.png" width="80" height="80" alt="clock">
+        <strong>Plan</strong>Away
+      </h1>
+    </a>
+  </nav>
+
   <div class="wrapper">
-    <login><div id="form" class="form-group">
-        <h2 class="title-text1">Log In </h2>
-        <form action="/login" method="POST">
-          <div class="wrapper">
+    <div class="inner">
+      <div class="image-holder">
+        <img src="../images/gym.png" alt="">
+      </div>
+      <form action="/login" method="POST">
+        <h3>Log in</h3>
+        <div class="form-holder active">
+          <input type="text" name="username" placeholder="name" class="form-control">
+        </div>
+        <div class="form-holder">
+          <input type="password" name="password" placeholder="Password" class="form-control" style="font-size: 15px;">
+        </div>
 
-          <label class="title-text2">
-            Username
-            <input
-              class="inputField2"
-              type="text"
-              name="username"
-              placeholder="Your username"
-            />
-          </label>
+        <div class="form-login">
+          <button>Log in</button>
+          <p>Don't have an account? <a href="/auth/signup">Signup</a></p>
+        </div>
 
-          <label class="title-text3">
-            Password
-            <input
-              class="inputField1"
-              type="password"
-              name="password"
-              placeholder="Your password"
-            />
-          </label>
-          <span class="centre-button1">
-            <button
-              class="main__button"
-              type="submit"
-              class="btn btn-primary"
-            >Login</button>
-          </span>
-          </div>
-          <br />
-          {{#if errorMessage}}
-            <p class="title-text4" class="error">{{errorMessage}}</p>
-          {{/if}}
-        </form>
-      </div></login>
+        {{#if errorMessage}}
+        <p class="title-text4" class="error">{{errorMessage}}</p>
+        {{/if}}
+
+      </form>
+    </div>
   </div>
-</header>
+
+  <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+
+</html>

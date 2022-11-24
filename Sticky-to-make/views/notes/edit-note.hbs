@@ -1,38 +1,66 @@
-<nav class="navbar">
-  <a href="/dashboard" class="logo"><strong>Plan</strong>Away</a>
-  <div class="nav-links">
-    <ul class="nav-menu">
-      <li class='active'><a href="/logout">Log Out</a></li>
-      <li class="active"><a href="">Contact Us</a></li>
-    </ul>
-  </div>
-</nav>
-<form onsubmit="onSubmit()" action="/notes/{{note._id}}/edit" method="POST">
-  <div class="header">
-    <div class="wrapper">
-      <div class="title-wrapper">
-        <h2 class="title-text1">Detail Note </h2>
-      </div>
-      <div>
+<!DOCTYPE html>
+<html>
 
-        <span class="title-text2">Title : </span>
-        <textarea name="title" class="textarea3" rows="2" cols="30">{{note.title}}</textarea>
-      </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-      <div>
-        <span class="title-text3">Description : </span>
-        <textarea name="description" class="textarea4" rows="7" cols="50">{{note.description}}</textarea>
-      </div>
+  <!-- STYLE CSS -->
+  <link rel="stylesheet" href="/stylesheets/style-pages.css" />
+</head>
 
-      <div class="form-check">
-        <input class="title-text3" type="checkbox" value="done" {{#if note.taskDone}}checked{{/if}}
-          id="flexCheckDefault" name="checkbox" />
-        <label class="form-check-label" for="flexCheckDefault" for="flexCheckDefault">Task completed </label>
-      </div>
+<body>
 
-      <div class="centre-button">
-        <button class="main__button" value="submit">Submit Edit</button>
-      </div>
+  <nav class="navbar">
+    <a href="/">
+      <h1> <img src="/images/clock.png" width="80" height="80" alt="clock">
+        <strong>Plan</strong>Away
+      </h1>
+    </a>
+
+    <span2>
+      <a class="button-83" href="/dashboard">Dashboard</a>
+    </span2>
+  </nav>
+  <div class="wrapper2">
+    <div class="inner2">
+
+      <form onsubmit="onSubmit()" action="/notes/{{note._id}}/edit" method="POST">
+
+        <div class="title-wrapper">
+          <h2 class="title-text1">Edit Note </h2>
+        </div>
+        <div>
+
+          <span class="title-text2">Title : </span>
+          <textarea name="title" class="textarea3" rows="2" cols="30">{{note.title}}</textarea>
+        </div>
+
+        <div>
+          <span class="title-text3">Description : </span>
+          <textarea name="description" class="textarea4" rows="7" cols="50">{{note.description}}</textarea>
+        </div>
+
+        <div class="form-check">
+          <input class="title-text3" type="checkbox" value="done" {{#if note.taskDone}}checked{{/if}}
+            id="flexCheckDefault" name="checkbox" />
+          <label class="form-check-label" for="flexCheckDefault" for="flexCheckDefault">Task completed </label>
+        </div>
+
+
+        <div class="btn2">
+
+          <button class="main__button" value="submit">Submit Edit</button>
+
+        </div>
+      </form>
+
+
+
     </div>
   </div>
-</form>
+  <script src="../js/jquery-3.3.1.min.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+
+</html>
