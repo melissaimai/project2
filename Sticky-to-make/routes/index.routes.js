@@ -5,10 +5,10 @@ const Notes = require("../models/Notes.model");
 const moment = require("moment");
 
 //middleware
-const { isLoggedIn } = require("../middleware/route-guard.js");
+const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard.js");
 
 // Landing Page
-router.get("/", (req, res, next) => {
+router.get("/", isLoggedOut, (req, res, next) => {
   res.render("index");
 });
 
@@ -47,13 +47,9 @@ router.post("/notes/:id/edit", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   const { title, description, checkbox } = req.body;
 
-  let taskDone = checkbox ? true : false
+  let taskDone = checkbox ? true : false;
 
-  Notes.findByIdAndUpdate(
-    id,
-    { title, description, taskDone },
-    { new: true }
-  )
+  Notes.findByIdAndUpdate(id, { title, description, taskDone }, { new: true })
     .then((updatedNote) => {
       updatedNote.save();
     })
@@ -81,7 +77,7 @@ router.post("/notes/create", isLoggedIn, (req, res, next) => {
 });
 //axios calls this for showEvents() ..to display all notes for that Date for that User
 router.get("/notes/:date", isLoggedIn, (req, res) => {
-  const { date} = req.params;
+  const { date } = req.params;
   Notes.find({
     date: new Date(moment(date).format("YYYY-MM-DD")),
     owner: req.session.User._id,
