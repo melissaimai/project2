@@ -300,7 +300,7 @@ addEventButton.onclick = async function (e) {
     .post(`http://${window.location.host}/notes/create`, {
       title,
       description: desc,
-      date: selectedDate.toISOString(),
+      date: selectedDate.toDateString(),
     })
     .then(() => {
       showEvents();
@@ -362,7 +362,7 @@ addEventListener("click", async (event) => {
               day: "numeric",
               month: "short",
             }) +
-            " - " +
+            " : " +
             response.data.daily.temperature_2m_max[index] +
             "°C";
         }
@@ -378,7 +378,7 @@ addEventListener("click", async (event) => {
               day: "numeric",
               month: "short",
             }) +
-            " - " +
+            " : " +
             response.data.daily.temperature_2m_max[index] +
             "°C";
         }
@@ -396,7 +396,7 @@ addEventListener("click", async (event) => {
               day: "numeric",
               month: "short",
             }) +
-            " - " +
+            " : " +
             response.data.daily.temperature_2m_max[index] +
             "°C";
         }
